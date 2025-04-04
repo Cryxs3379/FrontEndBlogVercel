@@ -1,9 +1,12 @@
-import { Routes, Route } from 'react-router-dom';
-import Articulos from './components/Articulos';
-import ArticuloDetalle from './components/ArticuloDetalle';
-import NuevoArticulo from './components/NuevoArticulo';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import BlogDinamico from './components/BlogDinamico/BlogDinamico';
+import Home from './components/Home/Home';
+import Navbar from './components/Navbar/Navbar';
 
 export default function App() {
+  const location = useLocation();
+  const esInicio = location.pathname === '/';
+
   return (
     <div style={{
       minHeight: '100vh',
@@ -11,21 +14,27 @@ export default function App() {
       flexDirection: 'column',
       backgroundColor: '#f9f9f9',
       width: '100%',
-      overflowX: 'hidden' // ✨ Protección extra
+      overflowX: 'hidden'
     }}>
-      <header style={{
-        backgroundColor: '#1a1a1a',
-        padding: '2rem 1rem',
-        textAlign: 'center',
-        width: '100%'
-      }}>
-        <h1 style={{ color: '#fff', fontSize: '2.5rem', margin: 0 }}>
-          📰 BlogDinámico
-        </h1>
-        <p style={{ color: '#bbb', marginTop: '0.5rem' }}>
-          Explora artículos sobre tecnología, ciencia y más.
-        </p>
-      </header>
+      {/* ✅ Navbar siempre visible */}
+      <Navbar />
+
+      {/* ✅ Header solo visible en / */}
+      {esInicio && (
+        <header style={{
+          backgroundColor: '#1a1a1a',
+          padding: '2rem 1rem',
+          textAlign: 'center',
+          width: '100%'
+        }}>
+          <h1 style={{ color: '#fff', fontSize: '2.5rem', margin: 0 }}>
+            💼 Portafolio - Pablo
+          </h1>
+          <p style={{ color: '#bbb', marginTop: '0.5rem' }}>
+            Bienvenido a mi sitio personal y profesional
+          </p>
+        </header>
+      )}
 
       <main style={{
         flex: 1,
@@ -35,9 +44,8 @@ export default function App() {
         padding: '2rem 1rem'
       }}>
         <Routes>
-          <Route path="/" element={<Articulos />} />
-          <Route path="/articulo/:id" element={<ArticuloDetalle />} />
-          <Route path="/nuevo" element={<NuevoArticulo />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/blog/*" element={<BlogDinamico />} />
         </Routes>
       </main>
 
@@ -48,7 +56,7 @@ export default function App() {
         color: '#999',
         width: '100%'
       }}>
-        © 2025 BlogDinámico - Todos los derechos reservados
+        © 2025 Pablo | Todos los derechos reservados
       </footer>
     </div>
   );

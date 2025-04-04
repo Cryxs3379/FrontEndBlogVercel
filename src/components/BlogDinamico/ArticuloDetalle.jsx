@@ -23,7 +23,7 @@ const ArticuloDetalle = () => {
       try {
         await axios.delete(`${import.meta.env.VITE_API_URL}/api/articulos/${id}`);
         alert('Artículo eliminado');
-        navigate('/');
+        navigate('/blog');
       } catch (err) {
         alert('Error al eliminar el artículo');
       }

@@ -65,7 +65,7 @@ export default function Articulos() {
         {filtrados.map(articulo => (
           <div
             key={articulo._id}
-            onClick={() => navigate(`/articulo/${articulo._id}`)}
+            onClick={() => navigate(`/blog/articulo/${articulo._id}`)}
             style={{
               background: '#fff',
               padding: '1.5rem',
@@ -100,7 +100,7 @@ export default function Articulos() {
   marginTop: '3rem'
 }}>
   <button
-    onClick={() => navigate('/nuevo')}
+    onClick={() => navigate('/blog/nuevo')}
     style={{
       background: 'crimson',
       color: '#fff',

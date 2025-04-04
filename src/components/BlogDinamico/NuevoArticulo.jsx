@@ -28,7 +28,7 @@ export default function NuevoArticulo() {
     try {
       await axios.post(`${import.meta.env.VITE_API_URL}/api/articulos`, form);
       alert('✅ Artículo publicado');
-      navigate('/');
+      navigate('/blog');
     } catch (err) {
       alert('❌ Error al publicar el artículo');
     }
