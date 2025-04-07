@@ -1,11 +1,16 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { useState } from 'react';
+
 import BlogDinamico from './components/BlogDinamico/BlogDinamico';
 import Home from './components/Home/Home';
 import Navbar from './components/Navbar/Navbar';
+import Login from './components/Auth/Login';
+import Calendario from './components/Calendar/Calendar';
 
 export default function App() {
   const location = useLocation();
   const esInicio = location.pathname === '/';
+  const [user, setUser] = useState(null);
 
   return (
     <div style={{
@@ -16,10 +21,8 @@ export default function App() {
       width: '100%',
       overflowX: 'hidden'
     }}>
-      {/* ✅ Navbar siempre visible */}
       <Navbar />
 
-      {/* ✅ Header solo visible en / */}
       {esInicio && (
         <header style={{
           backgroundColor: '#1a1a1a',
@@ -46,6 +49,16 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/blog/*" element={<BlogDinamico />} />
+          <Route 
+            path="/calendario" 
+            element={
+              user ? (
+                <Calendario />
+              ) : (
+                <Login onLogin={setUser} />
+              )
+            } 
+          />
         </Routes>
       </main>
 
