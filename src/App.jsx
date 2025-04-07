@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import BlogDinamico from './components/BlogDinamico/BlogDinamico';
 import Home from './components/Home/Home';
@@ -12,6 +12,14 @@ export default function App() {
   const esInicio = location.pathname === '/';
   const [user, setUser] = useState(null);
 
+  // Recuperar sesión al cargar
+  useEffect(() => {
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
+    }
+  }, []);
+
   return (
     <div style={{
       minHeight: '100vh',
@@ -21,7 +29,7 @@ export default function App() {
       width: '100%',
       overflowX: 'hidden'
     }}>
-      <Navbar />
+      <Navbar user={user} setUser={setUser} />
 
       {esInicio && (
         <header style={{
@@ -50,15 +58,18 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/blog/*" element={<BlogDinamico />} />
           <Route 
-  path="/calendario" 
-  element={
-    user ? (
-      <Calendario user={user} />
-    ) : (
-      <Login onLogin={setUser} />
-    )
-  } 
-/>
+            path="/calendario" 
+            element={
+              user ? (
+                <Calendario user={user} />
+              ) : (
+                <Login onLogin={(u) => {
+                  setUser(u);
+                  localStorage.setItem('user', JSON.stringify(u));
+                }} />
+              )
+            } 
+          />
         </Routes>
       </main>
 

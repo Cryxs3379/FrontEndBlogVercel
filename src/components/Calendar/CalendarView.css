@@ -1,0 +1,69 @@
+/* Estilos generales del calendario */
+.rbc-calendar {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  }
+  
+  /* Estilos de la cabecera (toolbar) */
+  .rbc-toolbar {
+    background-color: #343a40;
+    color: #fff;
+    padding: 0.75rem;
+    border-bottom: 1px solid #495057;
+  }
+  
+  .rbc-toolbar button {
+    background: none;
+    border: none;
+    color: #fff;
+    margin: 0 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .rbc-toolbar button:hover {
+    text-decoration: underline;
+  }
+  
+  /* Estilos para los días y celdas */
+  .rbc-day-slot .rbc-day-bg {
+    background-color: #ffffff;
+  }
+  
+  /* Estilos para los eventos */
+  .rbc-event {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  }
+  
+  .rbc-event:hover {
+    opacity: 0.9;
+  }
+  
+  /* Estilos para la vista de Agenda */
+  .rbc-agenda-content {
+    border-top: 1px solid #dee2e6;
+  }
+  
+  .rbc-agenda-time {
+    color: #6c757d;
+  }
+  
+  /* Indicador para eventos arrastrables */
+  .rbc-addons-dnd .rbc-addons-dnd-event {
+    border: 2px dashed #007bff;
+    background-color: transparent;
+  }
+  
+  /* Estilo para la selección activa */
+  .rbc-selected {
+    border: 2px solid #007bff;
+  }
+  

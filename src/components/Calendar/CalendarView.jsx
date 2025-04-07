@@ -3,6 +3,7 @@ import { Calendar as BigCalendar, momentLocalizer, Views } from 'react-big-calen
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
+import './CalendarView.css'; // Importa tu archivo CSS personalizado
 
 const localizer = momentLocalizer(moment);
 const DragAndDropCalendar = withDragAndDrop(BigCalendar);

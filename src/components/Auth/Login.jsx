@@ -9,7 +9,9 @@ const Login = ({ onLogin }) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5000/auth/login', { email, password });
-      onLogin(response.data.user);
+      const user = response.data.user;
+      localStorage.setItem('user', JSON.stringify(user)); // Guardar en localStorage
+      onLogin(user); // Informar al componente padre
     } catch (error) {
       alert('Credenciales inválidas');
     }
