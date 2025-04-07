@@ -50,15 +50,15 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/blog/*" element={<BlogDinamico />} />
           <Route 
-            path="/calendario" 
-            element={
-              user ? (
-                <Calendario />
-              ) : (
-                <Login onLogin={setUser} />
-              )
-            } 
-          />
+  path="/calendario" 
+  element={
+    user ? (
+      <Calendario user={user} />
+    ) : (
+      <Login onLogin={setUser} />
+    )
+  } 
+/>
         </Routes>
       </main>
 
