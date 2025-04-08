@@ -8,7 +8,7 @@ const Login = ({ onLogin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/auth/login', { email, password });
+      const response = await axios.post('https://backendblogrender.onrender.com/auth/login', { email, password });
       const user = response.data.user;
       localStorage.setItem('user', JSON.stringify(user));
       onLogin(user);
