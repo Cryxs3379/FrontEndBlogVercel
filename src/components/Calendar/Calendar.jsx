@@ -25,7 +25,7 @@ const Calendar = ({ user }) => {
 
   const fetchEvents = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/eventos');
+      const res = await axios.get('https://backendblogrender.onrender.com/api/eventos');
       const data = res.data.map(ev => ({
         ...ev,
         start: new Date(ev.start),
@@ -39,7 +39,7 @@ const Calendar = ({ user }) => {
 
   const fetchHistory = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/historial');
+      const res = await axios.get('https://backendblogrender.onrender.com/api/historial');
       setHistory(res.data);
     } catch (err) {
       console.error('Error al cargar historial:', err);
@@ -60,7 +60,7 @@ const Calendar = ({ user }) => {
     if (!user || !user._id || !user.email) return;
 
     try {
-      await axios.post('http://localhost:5000/api/eventos', {
+      await axios.post('https://backendblogrender.onrender.com/api/eventos', {
         ...formData,
         userId: user._id,
         email: user.email,
@@ -83,7 +83,7 @@ const Calendar = ({ user }) => {
     if (!selectedEvent || !window.confirm('¿Eliminar este evento?')) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/eventos/${selectedEvent._id}`, {
+      await axios.delete(`https://backendblogrender.onrender.com/api/eventos/${selectedEvent._id}`, {
         data: {
           userId: user._id,
           nombre: user.nombre,
@@ -112,7 +112,7 @@ const Calendar = ({ user }) => {
   const submitEdit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/eventos/${selectedEvent._id}`, {
+      await axios.put(`https://backendblogrender.onrender.com/api/eventos/${selectedEvent._id}`, {
         title: formData.title,
         description: formData.description,
         start: formData.start,
@@ -132,7 +132,7 @@ const Calendar = ({ user }) => {
 
   const moveEvent = async ({ event, start, end }) => {
     try {
-      await axios.put(`http://localhost:5000/api/eventos/${event._id}`, {
+      await axios.put(`https://backendblogrender.onrender.com/api/eventos/${event._id}`, {
         title: event.title,
         description: event.description,
         start,
