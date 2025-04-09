@@ -1,8 +1,10 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+
+/* Asegura que no haya margen exterior */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  background-color: #111; /* fondo global coherente */
+  height: 100%;
 }
 
 .logo {

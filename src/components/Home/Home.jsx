@@ -1,48 +1,158 @@
+import React from 'react';
+import WordFormationAnimation from './WordFormationAnimation'; // Asegúrate que la ruta sea correcta
+
 const Home = () => {
   return (
-    <section style={{ maxWidth: '900px', margin: '0 auto', padding: '4rem 1rem' }}>
-      <h1 style={{ fontSize: '2.8rem', marginBottom: '1rem' }}>👋 ¡Hola! Soy Pablo Trujillo</h1>
-      <p style={{ fontSize: '1.2rem', color: '#555', marginBottom: '2rem' }}>
-        Soy desarrollador web con experiencia en <strong>JavaScript, React, Node.js y MongoDB</strong>. 
-        Me especializo en crear soluciones funcionales y escalables usando el stack MERN y herramientas modernas de automatización y bases de datos.
-      </p>
+    <div
+      style={{
+        minHeight: '100vh',
+        backgroundColor: '#111',
+        color: '#ddd',
+        fontFamily: `'Segoe UI', Tahoma, Geneva, Verdana, sans-serif`,
+      }}
+    >
+      {/* SECCIÓN PRINCIPAL */}
+      <div
+        style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '4rem',
+          minHeight: 'calc(100vh - 80px)',
+          padding: '2rem',
+        }}
+      >
+        <div style={{ flex: 1, minWidth: '300px' }}>
+          <h1 style={{ fontSize: '3rem', color: '#fff', marginBottom: '1.5rem' }}>
+            Bienvenido<span style={{ color: '#f5d76e' }}>.</span>
+          </h1>
+          <p style={{ lineHeight: '1.6rem', fontSize: '1.1rem', marginBottom: '1.5rem', maxWidth: '600px' }}>
+            Mi nombre es <strong>Pedro Trujillo</strong>, soy desarrollador front-end con base en España.
+          </p>
+          <p style={{ color: '#aaa', lineHeight: '1.6rem' }}>
+            Me apasiona crear interfaces limpias, intuitivas y visualmente atractivas que conectan la lógica con la experiencia de usuario.
+          </p>
+        </div>
 
-      <h2 style={{ marginTop: '2rem' }}>🧠 Tecnologías Destacadas</h2>
-      <ul style={{ listStyle: 'none', padding: 0, lineHeight: '1.8rem' }}>
-        <li>✅ React (Hooks, MERN, Redux)</li>
-        <li>✅ Node.js + Express</li>
-        <li>✅ MongoDB + MySQL</li>
-        <li>✅ CSS moderno (Flexbox, Grid, responsive)</li>
-        <li>✅ Automatización con UiPath y VBA</li>
-      </ul>
+        <div style={{ flex: 1, minWidth: '300px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div
+            style={{
+              width: '160px',
+              height: '160px',
+              borderRadius: '50%',
+              backgroundColor: '#222',
+              border: '2px solid #f5d76e',
+              marginBottom: '1.5rem',
+            }}
+          />
+          <span style={{ fontSize: '0.9rem', color: '#666' }}>Tu foto aquí</span>
+          <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+            <h2 style={{ fontSize: '1.2rem', color: '#f5d76e', marginBottom: '0.5rem' }}>Pedro Trujillo Lucena</h2>
+            <p>Málaga, España</p>
+            <p>📞 +34 675 034 328</p>
+            <p>✉️ pedrotl3379@gmail.com</p>
+            <p>
+              🔗 <a href="https://linkedin.com/in/pedrotrujillolucena" target="_blank" rel="noopener noreferrer" style={{ color: '#f5d76e' }}>LinkedIn</a>
+            </p>
+          </div>
+        </div>
+      </div>
 
-      <h2 style={{ marginTop: '2.5rem' }}>🎓 Formación</h2>
-      <ul style={{ listStyle: 'none', padding: 0, lineHeight: '1.7rem' }}>
-        <li><strong>Curso React: De cero a experto (MERN)</strong> – 2022 - 2024</li>
-        <li><strong>Curso MySQL Ver 5.7 y 8</strong> – Diseño, triggers, funciones, vistas</li>
-        <li><strong>Programa RPA con UiPath</strong> – Escuela EOI + Fundación Generation</li>
-        <li><strong>Grado Superior ASIR</strong> – Administración de Sistemas Informáticos en Red</li>
-      </ul>
+      {/* ANIMACIÓN TEXTO CON BOLAS */}
+      <WordFormationAnimation />
 
-      <h2 style={{ marginTop: '2.5rem' }}>💼 Experiencia Relevante</h2>
-      <ul style={{ listStyle: 'none', padding: 0, lineHeight: '1.7rem' }}>
-        <li><strong>Técnico informático - AyrConsulting</strong> (2022 - 2023)</li>
-        <li>→ Automatización de procesos con UiPath y macros en VBA</li>
-        <li>→ Optimización y mantenimiento web, análisis de datos</li>
-        <li>→ Excel avanzado, .NET y tareas de infraestructura</li>
-      </ul>
+      {/* RESTO DE CONTENIDO */}
+      <section style={{ marginTop: '4rem', maxWidth: '900px', marginInline: 'auto' }}>
+        <h2 style={sectionTitle}>Perfil Profesional</h2>
+        <p style={paragraph}>
+          Profesional en Tecnologías de la Información con un Grado Superior en Administración de Sistemas Informáticos en Red,
+          nivel alto de inglés (B2) y más de cuatro años de experiencia aplicando soluciones de inteligencia artificial, automatización
+          de procesos y desarrollo full-stack. Apasionado por la innovación tecnológica, con amplio dominio de herramientas y frameworks actuales,
+          enfocado en crear sistemas eficientes que optimicen recursos y potencien la toma de decisiones estratégicas.
+        </p>
+      </section>
 
-      <h2 style={{ marginTop: '2.5rem' }}>📂 Proyectos</h2>
-      <p style={{ marginBottom: '1rem' }}>Explora mis aplicaciones:</p>
-      <ul style={{ listStyle: 'none', padding: 0, lineHeight: '1.8rem' }}>
-        <li>🔗 <a href="/blog">BlogDinámico</a> – Crea y gestiona artículos con MongoDB</li>
-        <li>🔜 Calendario – Gestión de eventos (en desarrollo)</li>
-        <li>🔜 Biblioteca de Películas – Explora y guarda títulos (en desarrollo)</li>
-      </ul>
-    </section>
+      <section style={{ marginTop: '3rem', maxWidth: '900px', marginInline: 'auto' }}>
+        <h2 style={sectionTitle}>Habilidades Técnicas</h2>
+        <ul style={list}>
+          <li><strong>Bases de Datos:</strong> MySQL, MariaDB</li>
+          <li><strong>Frontend & Backend:</strong> React, JavaScript, PHP, MERN</li>
+          <li><strong>Automatización y RPA:</strong> UiPath, VBA, BPMN</li>
+          <li><strong>IA & ML:</strong> ChatGPT, TensorFlow, PyTorch</li>
+          <li><strong>Lenguajes:</strong> JavaScript, C++, PHP</li>
+          <li><strong>Ofimática:</strong> Excel, Word, macros</li>
+          <li><strong>Versionado:</strong> GitHub</li>
+        </ul>
+      </section>
+
+      <section style={{ marginTop: '3rem', maxWidth: '900px', marginInline: 'auto' }}>
+        <h2 style={sectionTitle}>Idiomas</h2>
+        <ul style={list}>
+          <li>Español: Nativo</li>
+          <li>Inglés: Nivel B2</li>
+        </ul>
+      </section>
+
+      <section style={{ marginTop: '3rem', maxWidth: '900px', marginInline: 'auto' }}>
+        <h2 style={sectionTitle}>Formación Académica</h2>
+        <ul style={list}>
+          <li><strong>Grado Superior ASIR</strong> – IES Campanillas</li>
+          <li><strong>Certificación Cisco</strong> – Redes, Diagnóstico</li>
+        </ul>
+      </section>
+
+      <section style={{ marginTop: '3rem', maxWidth: '900px', marginInline: 'auto' }}>
+        <h2 style={sectionTitle}>Formación Complementaria</h2>
+        <ul style={list}>
+          <li><strong>React MERN</strong> – 2022–2024</li>
+          <li><strong>MySQL avanzado</strong></li>
+          <li><strong>UiPath + Bizagi + VBA</strong></li>
+        </ul>
+      </section>
+
+      <section style={{ marginTop: '3rem', maxWidth: '900px', marginInline: 'auto' }}>
+        <h2 style={sectionTitle}>Proyectos & Competencias</h2>
+        <ul style={list}>
+          <li>Modelos de IA generativa (OpenAI, DALL-E, MidJourney)</li>
+          <li>Automatización inteligente, análisis predictivo</li>
+        </ul>
+      </section>
+
+      <footer
+        style={{
+          marginTop: '4rem',
+          textAlign: 'right',
+          fontSize: '0.9rem',
+          color: '#666',
+          padding: '1rem 2rem',
+        }}
+      >
+        ©2024 pedrotrujillo.dev
+      </footer>
+    </div>
   );
 };
 
-export default Home;
+const sectionTitle = {
+  color: '#f5d76e',
+  fontSize: '1.5rem',
+  marginBottom: '1rem',
+};
 
-  
+const paragraph = {
+  lineHeight: '1.8rem',
+  fontSize: '1rem',
+  color: '#ccc',
+};
+
+const list = {
+  listStyle: 'none',
+  paddingLeft: 0,
+  lineHeight: '1.8rem',
+  color: '#ccc',
+};
+
+export default Home;

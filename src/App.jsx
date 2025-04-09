@@ -9,8 +9,10 @@ import Calendario from './components/Calendar/Calendar';
 
 export default function App() {
   const location = useLocation();
-  const esInicio = location.pathname === '/';
   const [user, setUser] = useState(null);
+
+  // Determinar si estamos en la ruta raíz
+  const esInicio = location.pathname === '/';
 
   // Recuperar sesión al cargar
   useEffect(() => {
@@ -25,34 +27,16 @@ export default function App() {
       minHeight: '100vh',
       display: 'flex',
       flexDirection: 'column',
-      backgroundColor: '#f9f9f9',
+      backgroundColor: esInicio ? '#111' : '#f9f9f9', // 🎯 cambia según la ruta
       width: '100%',
-      overflowX: 'hidden'
+      overflowX: 'hidden',
     }}>
       <Navbar user={user} setUser={setUser} />
-
-      {esInicio && (
-        <header style={{
-          backgroundColor: '#1a1a1a',
-          padding: '2rem 1rem',
-          textAlign: 'center',
-          width: '100%'
-        }}>
-          <h1 style={{ color: '#fff', fontSize: '2.5rem', margin: 0 }}>
-            💼 Portafolio - Pablo
-          </h1>
-          <p style={{ color: '#bbb', marginTop: '0.5rem' }}>
-            Bienvenido a mi sitio personal y profesional
-          </p>
-        </header>
-      )}
 
       <main style={{
         flex: 1,
         width: '100%',
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '2rem 1rem'
+        padding: 0,
       }}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -72,16 +56,6 @@ export default function App() {
           />
         </Routes>
       </main>
-
-      <footer style={{
-        textAlign: 'center',
-        padding: '1rem',
-        backgroundColor: '#1a1a1a',
-        color: '#999',
-        width: '100%'
-      }}>
-        © 2025 Pablo | Todos los derechos reservados
-      </footer>
     </div>
   );
 }
