@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 
-const WordFormationAnimation = () => {
+const WordFormationAnimation2 = () => {
   const canvasRef = useRef(null);
   const textCanvasRef = useRef(null);
   const particles = useRef([]);
@@ -30,7 +30,7 @@ const WordFormationAnimation = () => {
     textCtx.textBaseline = 'middle';
 
     // ✅ Frase completa centrada
-    const phrase = 'Habilidades Técnicas';
+    const phrase = 'Proyectos Destacados y Competencias';
     textCtx.fillText(phrase, width.current / 2, height / 2);
 
     const imageData = textCtx.getImageData(0, 0, width.current, height).data;
@@ -137,4 +137,4 @@ const WordFormationAnimation = () => {
   );
 };
 
-export default WordFormationAnimation;
+export default WordFormationAnimation2;
