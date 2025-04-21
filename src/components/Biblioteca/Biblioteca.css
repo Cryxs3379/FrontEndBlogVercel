@@ -1,0 +1,29 @@
+.biblioteca-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 30px;
+    justify-content: center;
+  }
+  
+  .biblioteca-card {
+    width: 260px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 16px;
+    background-color: #fff;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+  }
+  
+  .biblioteca-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .biblioteca-img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+  
