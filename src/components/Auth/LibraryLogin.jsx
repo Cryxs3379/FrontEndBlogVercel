@@ -1,64 +1,120 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:10000';
-
 const LibraryLogin = ({ onLogin }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [form, setForm] = useState({ email: '', password: '' });
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+    setErrorMessage('');
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setLoading(true);
 
     try {
-      const res = await fetch(`${API_BASE}/api/auth/library`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+      const { data } = await axios.post('https://backendblogrender.onrender.com/api/auth/library', {
+        email: form.email.trim(),
+        password: form.password,
       });
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        setError(data.message || 'Credenciales inválidas');
-        return;
+      if (data?.user) {
+        localStorage.setItem('libraryUser', JSON.stringify(data.user));
+        onLogin(data.user);
+      } else {
+        throw new Error('Respuesta inesperada del servidor.');
       }
-
-      onLogin(data); // Pasa los datos al App
     } catch (err) {
       console.error(err);
-      setError('Error del servidor');
+      setErrorMessage('Credenciales inválidas o error del servidor.');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h2>📚 Acceso Biblioteca</h2>
-      <form onSubmit={handleLogin}>
+    <div style={styles.container}>
+      <form onSubmit={handleSubmit} style={styles.form}>
+        <h2 style={styles.heading}>📚 Acceso Biblioteca</h2>
+
+        {errorMessage && <div style={styles.error}>{errorMessage}</div>}
+
         <input
           type="email"
+          name="email"
           placeholder="Correo"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={form.email}
+          onChange={handleChange}
           required
+          style={styles.input}
         />
-        <br />
+
         <input
           type="password"
+          name="password"
           placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={form.password}
+          onChange={handleChange}
           required
+          style={styles.input}
         />
-        <br />
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit">Entrar</button>
+
+        <button type="submit" style={styles.button} disabled={loading}>
+          {loading ? 'Cargando...' : 'Entrar'}
+        </button>
       </form>
     </div>
   );
+};
+
+const styles = {
+  container: {
+    maxWidth: '520px',
+    margin: '2rem auto',
+    padding: '2rem',
+    border: '1px solid #ccc',
+    borderRadius: '8px',
+    boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
+    backgroundColor: '#fff',
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  heading: {
+    textAlign: 'center',
+    marginBottom: '1.5rem',
+    color: '#333',
+    fontSize: '1.6rem',
+  },
+  input: {
+    padding: '0.8rem',
+    marginBottom: '1rem',
+    borderRadius: '4px',
+    border: '1px solid #ccc',
+    fontSize: '1rem',
+  },
+  button: {
+    padding: '0.8rem',
+    backgroundColor: '#007bff',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    fontSize: '1rem',
+    cursor: 'pointer',
+  },
+  error: {
+    color: '#d9534f',
+    marginBottom: '1rem',
+    fontSize: '0.95rem',
+    textAlign: 'center',
+  },
 };
 
 export default LibraryLogin;
