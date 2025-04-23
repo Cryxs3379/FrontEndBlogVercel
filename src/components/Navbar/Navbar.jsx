@@ -120,21 +120,7 @@ const Navbar = ({ user, setUser }) => {
           <Link to="/biblioteca" style={linkStyle}>
             <FaFilm /> Biblioteca
           </Link>
-          {user && location.pathname.startsWith('/calendario') && (
-            <button
-              onClick={handleLogout}
-              style={{
-                ...linkStyle,
-                background: 'none',
-                border: 'none',
-                color: '#f55',
-                cursor: 'pointer',
-                fontSize: '1rem',
-              }}
-            >
-              <FaSignOutAlt /> Cerrar Sesión
-            </button>
-          )}
+      
         </div>
       )}
     </>

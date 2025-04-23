@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { FaSignOutAlt } from 'react-icons/fa';
 
-const Biblioteca = () => {
+const Biblioteca = ({ bibliotecaUser, setBibliotecaUser }) => {
   const [peliculas, setPeliculas] = useState([]);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchPeliculas = async () => {
@@ -23,9 +26,46 @@ const Biblioteca = () => {
     fetchPeliculas();
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem('bibliotecaUser');
+    setBibliotecaUser(null);
+    navigate('/login-biblioteca');
+  };
+
   return (
     <div style={styles.container}>
-      <h2 style={styles.heading}>🎬 Biblioteca de Películas</h2>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        marginBottom: '2rem',
+      }}>
+        <h2 style={styles.heading}>
+          🎬 Biblioteca de Películas<br />
+          <span style={{ fontSize: '1rem', color: '#555' }}>
+            👋 Bienvenido, {bibliotecaUser?.nombre} {bibliotecaUser?.apellido}
+          </span>
+        </h2>
+        <button
+          onClick={handleLogout}
+          style={{
+            padding: '0.5rem 1rem',
+            backgroundColor: '#e74c3c',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            fontSize: '0.95rem',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            height: 'fit-content'
+          }}
+        >
+          <FaSignOutAlt /> Cerrar Sesión
+        </button>
+      </div>
 
       {errorMessage && <div style={styles.error}>{errorMessage}</div>}
       {loading ? (
@@ -54,8 +94,7 @@ const styles = {
     backgroundColor: '#fff',
   },
   heading: {
-    textAlign: 'center',
-    marginBottom: '2rem',
+    margin: 0,
     color: '#333',
     fontSize: '1.8rem',
   },

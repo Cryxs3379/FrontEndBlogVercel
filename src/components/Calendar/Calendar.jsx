@@ -6,10 +6,12 @@ import CalendarView from './CalendarView';
 import EventForm from './EventForm';
 import EventModal from './EventModal';
 import EditModal from './EditModal';
+import { FaSignOutAlt } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 Modal.setAppElement('#root');
 
-const Calendar = ({ user }) => {
+const Calendar = ({ user, setUser }) => {
   const [events, setEvents] = useState([]);
   const [history, setHistory] = useState([]);
   const [view, setView] = useState(Views.MONTH);
@@ -22,6 +24,13 @@ const Calendar = ({ user }) => {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [createModalOpen, setCreateModalOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    setUser(null);
+    navigate('/calendario');
+  };
 
   const fetchEvents = async () => {
     try {
@@ -150,10 +159,37 @@ const Calendar = ({ user }) => {
 
   return (
     <div style={{ padding: '1rem' }}>
-      <h2>📆 Calendario</h2>
-      <h3 style={{ marginBottom: '1rem', color: '#2c3e50' }}>
-        👋 Bienvenido, {user?.nombre} {user?.apellido}
-      </h3>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: '1rem'
+      }}>
+        <div>
+          <h2>📆 Calendario</h2>
+          <h3 style={{ color: '#2c3e50' }}>
+            👋 Bienvenido, {user?.nombre} {user?.apellido}
+          </h3>
+        </div>
+        <button
+          onClick={handleLogout}
+          style={{
+            padding: '0.5rem 1rem',
+            backgroundColor: '#e74c3c',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            fontSize: '0.95rem',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem'
+          }}
+        >
+          <FaSignOutAlt /> Cerrar Sesión
+        </button>
+      </div>
 
       <button
         onClick={() => setCreateModalOpen(true)}
